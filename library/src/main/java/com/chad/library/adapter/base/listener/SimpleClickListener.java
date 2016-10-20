@@ -78,7 +78,7 @@ public abstract class SimpleClickListener implements RecyclerView.OnItemTouchLis
             mIsPrepressed = true;
             mPressedView = recyclerView.findChildViewUnder(e.getX(), e.getY());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                if (mPressedView.getBackground() != null) {
+                if (mPressedView!=null&&mPressedView.getBackground() != null) {
                     mPressedView.getBackground().setHotspot(e.getRawX(), e.getY()-mPressedView.getY());
                 }
             }
