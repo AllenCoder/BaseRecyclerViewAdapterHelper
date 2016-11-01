@@ -3,6 +3,25 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="60dp">
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="@dimen/dp_40"
+            android:hint="输入跳转数字"
+            android:inputType="number"
+            android:id="@+id/et_num"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_go"
+            android:text="GO"/>
+    </LinearLayout>
+
 <android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"

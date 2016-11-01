@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.chad.baserecyclerviewadapterhelper.adapter.QuickClickAdapter;
@@ -21,16 +24,22 @@ public class RecyclerClickItemActivity extends Activity {
 
     private RecyclerView mRecyclerView;
     private QuickClickAdapter mQuickAdapter;
-    private static final int PAGE_SIZE = 10;
+    private static final int PAGE_SIZE = 100;
     private static String TAG = "RecyclerClickItemActivity";
+    private android.widget.EditText etnum;
+    private android.widget.Button btnGo;
+    private LinearLayoutManager layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_click);
+        this.btnGo = (Button) findViewById(R.id.btn_go);
+        this.etnum = (EditText) findViewById(R.id.et_num);
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+          layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
         initAdapter();
-        mQuickAdapter.addHeaderView(getHeadView());
+//        mQuickAdapter.addHeaderView(getHeadView());
         mQuickAdapter.addFooterView(getFootView());
 
 //        /**
@@ -119,6 +128,15 @@ public class RecyclerClickItemActivity extends Activity {
                 Toast.makeText(RecyclerClickItemActivity.this, "" + Integer.toString(position), Toast.LENGTH_SHORT).show();
             }
         });*/
+        btnGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                if (!TextUtils.isEmpty(etnum.getText().toString())){
+                    layoutManager.scrollToPositionWithOffset(Integer.valueOf(etnum.getText().toString()),0);
+                    layoutManager.setStackFromEnd(true);
+                }
+            }
+        });
     }
 
     private View getHeadView() {
